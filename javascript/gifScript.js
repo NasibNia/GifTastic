@@ -1,6 +1,7 @@
 
 var array  = ["happy", "angry", "excited"];
 var limit  = 10;
+var offset = 1;
 
 
 for (var i = 0 ; i < array.length ; i++){
@@ -15,7 +16,8 @@ $(document).on('click', '.BtnClass', function (){
     var srchInput = $(this).val();
     console.log("search input is " + srchInput);
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + srchInput + "&api_key=dc6zaTOxFJmzC&limit=" + limit;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + srchInput + "&api_key=dc6zaTOxFJmzC&limit=" + limit+"&offset=" + offset;
+    offset += limit;
 
     $.ajax({
         url: queryURL,
