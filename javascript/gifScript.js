@@ -52,8 +52,6 @@ $(document).on('click', '.BtnClass', function (){
 
         // $("#button-area").append()
     });
-
-
 });
 
 
