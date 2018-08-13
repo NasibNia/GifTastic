@@ -1,14 +1,19 @@
 
-var array  = ["happy", "angry", "excited"];
+var array  = ["happy", "angry", "excited", "grateful", "scared" , "chilled", "confused" ,"bored" , "thrilled" , "annoyed" ];
 var limit  = 10;
 var offset = 1;
+var previousSrch = "";
 
 
 for (var i = 0 ; i < array.length ; i++){
+    createButton (array[i]);
+}
+
+function createButton (str){
     var newButton = $('<button>');
     newButton.addClass("BtnClass");
-    newButton.text(array[i]);
-    newButton.attr("value", array[i]);
+    newButton.text(str);
+    newButton.attr("value", str);
     $("#button-area").append(newButton);
 }
 
@@ -16,7 +21,11 @@ $(document).on('click', '.BtnClass', function (){
     var srchInput = $(this).val();
     console.log("search input is " + srchInput);
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + srchInput + "&api_key=dc6zaTOxFJmzC&limit=" + limit+"&offset=" + offset;
+    if (srchInput !== previousSrch) {
+        $("#display-area").empty();
+    }
+    
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + srchInput + "&api_key=dc6zaTOxFJmzC&limit=" + limit+"&offset=" + offset + "&tag=emotions";
     offset += limit;
 
     $.ajax({
@@ -34,10 +43,10 @@ $(document).on('click', '.BtnClass', function (){
             showImage.attr("data-state","still");
             showImage.attr("class","gif");
             // showImage.attr("data-state", "still");
-            $("#display-area").append(showImage);
+            $("#display-area").prepend(showImage);
             // console.log(this)
         }
-
+        previousSrch = srchInput;
         
         // showImage.attr("src",);
 
@@ -60,4 +69,12 @@ $(document).on('click', '.gif', function (){
         console.log("src is " + $(this).attr("src"));
         $(this).attr("data-state","still");
     }
+});
+
+$(document).on('click', '#select-subject', function (){
+    event.preventDefault();
+    var inputsearch = $("#searchItem").val();
+    console.log(inputsearch);
+    createButton(inputsearch);
+
 });
