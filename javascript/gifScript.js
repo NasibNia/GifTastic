@@ -1,12 +1,14 @@
 
-var array  = ["happy", "angry", "excited", "grateful", "scared" , "chilled", "confused" ,"bored" , "thrilled" , "annoyed" ];
+var topics  = ["happy", "angry", "excited", "grateful", "scared" , "chilled", "confused" ,"bored" , "thrilled" , "annoyed" ];
 var limit  = 10;
 var offset = 1;
 var previousSrch = "";
 var trackerObj = {};
 
-for (var i = 0 ; i < array.length ; i++){
-    createButton (array[i]);
+for (var i = 0 ; i < topics.length ; i++){
+    createButton (topics[i]);
+    trackerObj[topics[i]] = true;
+
 }
 
 function createButton (str){
@@ -19,8 +21,9 @@ function createButton (str){
 
 $(document).on('click', '.BtnClass', function (){
     
-    $(this).attr('style',"background-color:blue");
+    // $(this).attr('style',"background-color:blue");
     var srchInput = $(this).val();
+
     console.log("search input is " + srchInput);
 
     if (srchInput !== previousSrch) {
@@ -39,7 +42,7 @@ $(document).on('click', '.BtnClass', function (){
         for (var i = 0 ; i < limit ; i++){
             
             var gifBlock = $('<div class="gifBox">');
-            var floatDiv = $("<div class='img-container hvr-bounce-to-bottom hvr-bounce-in'>");
+            var floatDiv = $("<div class='img-container hvr-bounce-to-bottom '>");
             var showImage = $('<img>');
             console.log(response.data[i].images);
             console.log(response.data[i].images.fixed_height_still.url);
@@ -47,15 +50,12 @@ $(document).on('click', '.BtnClass', function (){
             showImage.attr("data-still",response.data[i].images.fixed_height_still.url);
             showImage.attr("data-animate",response.data[i].images.fixed_height.url);
             showImage.attr("data-state","still");
-            // showImage.attr("class","gif card-deck card-img-top bg-dark col p-0 mt-4 mb-0 text-light border-9  float-right");
             showImage.attr("class","gif ");
 
 
             gifBlock.prepend(showImage);
             floatDiv.prepend(gifBlock);
             floatDiv.append('<p id = "note" class="card-title hvr-bounce-to-bottom" style="visibility:visible" > Rating : " ' + response.data[i].rating.toUpperCase()+  ' "</p>');
-            // showImage.attr("info", response.data[i].rating.toUpperCase());
-            // showImage.attr("data-state", "still");
             $("#display-area").prepend(floatDiv);
             
             // $("#display-area").append('<p id = "note" class="card-title" style="visibility:visible" > Rating : " ' + response.data[i].rating.toUpperCase()+  ' "</p>');
@@ -85,10 +85,29 @@ $(document).on('click', '.gif', function (){
     }
 });
 
+// create new buttons based on the subject user enters in the search bar
 $(document).on('click', '#select-subject', function (){
     event.preventDefault();
     var inputsearch = $("#searchItem").val();
     console.log(inputsearch);
-    createButton(inputsearch);
 
+    //check whether button already exists:
+    if (inputsearch in trackerObj){
+        console.log("button already exists");
+        $(".duplicate").text("button already exists");
+        // bouncing the submit button
+        var i = 0;
+		while (i<5){
+		    $(this).animate({right: '-5%'}, "fast");
+            $(this).animate({right: '5%'}, "fast");
+            // $(".duplicate").animate({right: '-5%'}, "fast");
+            // $(".duplicate").animate({right: '5%'}, "fast");
+        	i++;
+    	}
+        $(this).animate({right: '0%'}, "fast");
+    } else {
+        $(".duplicate").empty();
+        trackerObj[inputsearch] = true;
+        createButton(inputsearch);
+    }
 });

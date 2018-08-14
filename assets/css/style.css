@@ -67,7 +67,12 @@ label , #select-subject{
 .srchBox{
     padding-top: 5%;
 }
-
+.duplicate{
+    color: black;
+    background-color: yellow;
+    max-width: 50%;
+    text-align: center;
+}
 
 /* Borrowed the following exciting dynamic features from:
 http://ianlunn.github.io/Hover/#effects
