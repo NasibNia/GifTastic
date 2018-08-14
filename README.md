@@ -4,8 +4,8 @@
 
 <!-- Put a description of what the project is -->
 
-This fun project is the official introduction to the complex world of working with APIs. Calling Ghipy API, the user would be able to search through lots of different ones. the theme of this project is about reactions and emotion. Although Ghipy has touched any other subject as well. 
-The page starts with a predefined list of emotions. user can search any other and add it to the list, only if it's not done before.
+This fun project is the official introduction to the complex world of working with APIs. Calling Ghipy API, the user would be able to search through lots of different fun animations. The theme of this project is human reactions or emotions. Although, Ghipy has a massive library of almost any other subject. 
+The page starts with a predefined list of emotions and user can search for other types of emotional funny clips and add them to the list, only if it's not done before.
 
 # Link to deployed site
 <!-- make a link to the deployed site --> 
