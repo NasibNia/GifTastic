@@ -17,7 +17,7 @@ The page starts with a predefined list of emotions. user can search any other an
 # Images
 <!-- take a picture of the image and add it into the readme  -->
 <!-- ![image title](path or link to image) -->
-![wire frame](assets/images/image8.gif)
+![wire frame](assets/images/gifs/image8.gif)
 
 
 
