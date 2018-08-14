@@ -11,7 +11,7 @@ for (var i = 0 ; i < array.length ; i++){
 
 function createButton (str){
     var newButton = $('<button>');
-    newButton.addClass("BtnClass   light bg-primary border-9 border-success border rounded-circle mr-3 p-3 shadow-lg");
+    newButton.addClass("BtnClass   light bg-primary border-9 border-success border rounded-circle mr-3 p-3 shadow-lg   hvr-bounce-in");
     newButton.text(str);
     newButton.attr("value", str);
     $("#button-area").append(newButton);
@@ -37,7 +37,7 @@ $(document).on('click', '.BtnClass', function (){
         for (var i = 0 ; i < limit ; i++){
             
             var gifBlock = $('<div class="gifBox">');
-            var floatDiv = $("<div class='img-container'>");
+            var floatDiv = $("<div class='img-container hvr-bounce-to-bottom hvr-bounce-in'>");
             var showImage = $('<img>');
             console.log(response.data[i].images);
             console.log(response.data[i].images.fixed_height_still.url);
@@ -46,12 +46,12 @@ $(document).on('click', '.BtnClass', function (){
             showImage.attr("data-animate",response.data[i].images.fixed_height.url);
             showImage.attr("data-state","still");
             // showImage.attr("class","gif card-deck card-img-top bg-dark col p-0 mt-4 mb-0 text-light border-9  float-right");
-            showImage.attr("class","gif");
+            showImage.attr("class","gif ");
 
 
             gifBlock.prepend(showImage);
             floatDiv.prepend(gifBlock);
-            floatDiv.append('<p id = "note" class="card-title" style="visibility:visible" > Rating : " ' + response.data[i].rating.toUpperCase()+  ' "</p>');
+            floatDiv.append('<p id = "note" class="card-title hvr-bounce-to-bottom" style="visibility:visible" > Rating : " ' + response.data[i].rating.toUpperCase()+  ' "</p>');
             // showImage.attr("info", response.data[i].rating.toUpperCase());
             // showImage.attr("data-state", "still");
             $("#display-area").prepend(floatDiv);
