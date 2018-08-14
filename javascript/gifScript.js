@@ -18,6 +18,8 @@ function createButton (str){
 }
 
 $(document).on('click', '.BtnClass', function (){
+    
+    $(this).attr('style',"background-color:blue");
     var srchInput = $(this).val();
     console.log("search input is " + srchInput);
 
